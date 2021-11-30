@@ -4,6 +4,9 @@ public class StudentAccount {
     private Long id;
     private StudentStatus status;
 
+    public StudentAccount() {
+    }
+
     public StudentAccount(Long id, StudentStatus status) {
         this.id = id;
         this.status = status;
@@ -27,6 +30,6 @@ public class StudentAccount {
 
     @Override
     public String toString() {
-        return "id = " + id + ", status = " + status;
+        return id + " " + status;
     }
 }

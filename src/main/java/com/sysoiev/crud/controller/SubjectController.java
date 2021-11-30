@@ -24,7 +24,6 @@ public class SubjectController {
 
     public void updateSubject(Subject subject) {
         subjectRepository.update(subject);
-
     }
 
     public Subject getValueById(Long id) throws IOException {

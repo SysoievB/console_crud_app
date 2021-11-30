@@ -1,5 +1,6 @@
 package com.sysoiev.crud.repository.impl;
 
+import com.sysoiev.crud.model.StudentAccount;
 import com.sysoiev.crud.model.Subject;
 import com.sysoiev.crud.repository.SubjectRepository;
 
@@ -7,6 +8,7 @@ import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 public class SubjectRepositoryImpl implements SubjectRepository {
@@ -31,7 +33,8 @@ public class SubjectRepositoryImpl implements SubjectRepository {
                 return new Subject(id, s.substring(s.indexOf(' ')));
             }
         }
-        return null;
+        Optional<Subject> empty = Optional.empty();
+        return empty.orElseThrow(NullPointerException::new);
     }
 
     @Override
@@ -54,7 +57,6 @@ public class SubjectRepositoryImpl implements SubjectRepository {
         }
     }
 
-    //todo rewrite with stream method update
     @Override
     public Subject update(Subject subject) {
         try {

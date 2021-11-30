@@ -8,7 +8,11 @@ public class Student {
     private String name;
     private String surname;
     private StudentAccount account;
-    private Set<Subject> subjects =new HashSet<>();
+    private Set<Subject> subjects = new HashSet<>();
+
+    public Student() {
+
+    }
 
     public Student(Long id, String name, String surname, StudentAccount account, Set<Subject> subjects) {
         this.id = id;
@@ -60,12 +64,6 @@ public class Student {
 
     @Override
     public String toString() {
-        return "Student{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", surname='" + surname + '\'' +
-                ", account=" + account +
-                ", subjects=" + subjects +
-                '}';
+        return id + " " + name + " " + surname + " " + account + " " + subjects;
     }
 }
