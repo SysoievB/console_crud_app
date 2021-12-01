@@ -88,12 +88,11 @@ public class StudentAccountRepositoryImpl implements StudentAccountRepository {
         return account;
     }
 
-    //todo fix bug with enum
     @Override
     public List<StudentAccount> getAll() {
         return listAllElementsFromFileAccounts
                 .stream()
-                .map(s -> new StudentAccount(Long.parseLong(s.substring(0, s.indexOf(" "))), StudentStatus.valueOf(s.substring(s.indexOf(" ")))))
+                .map(s -> new StudentAccount(Long.parseLong(s.substring(0, s.indexOf(" "))), StudentStatus.valueOf(s.substring(s.indexOf(" ") + 1))))
                 .collect(Collectors.toList());
     }
 }
