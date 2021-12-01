@@ -1,6 +1,5 @@
 package com.sysoiev.crud.repository.impl;
 
-import com.sysoiev.crud.model.StudentAccount;
 import com.sysoiev.crud.model.Subject;
 import com.sysoiev.crud.repository.SubjectRepository;
 
