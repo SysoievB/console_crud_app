@@ -2,6 +2,7 @@ package com.sysoiev.crud.model;
 
 import java.util.HashSet;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 public class Student {
     private Long id;
@@ -62,8 +63,12 @@ public class Student {
         this.subjects = subjects;
     }
 
+    public String printAllSubjects() {
+        return "" + subjects.stream().map(Subject::getName).collect(Collectors.joining(" "));
+    }
+
     @Override
     public String toString() {
-        return id + " " + name + " " + surname + " " + account + " " + subjects;
+        return id + " " + name + " " + surname + " " + account.getStatus() + " " + printAllSubjects();
     }
 }
