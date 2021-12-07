@@ -18,7 +18,8 @@ public class Application {
         subjectSet.add(new Subject(1L,"math"));
         subjectSet.add(new Subject(2L,"geometry"));
         StudentAccount account = new StudentAccount(1L, StudentStatus.SECONDARY);
-        Student student =new Student(1L,"vasia","leontiv",account,subjectSet);
+        Student student =new Student(1L,"vasia","leontiv",account.getStatus(),subjectSet);
         System.out.println(student);
+
     }
 }

@@ -7,6 +7,10 @@ public class Subject {
     public Subject() {
     }
 
+    public Subject(String name) {
+        this.name = name;
+    }
+
     public Subject(Long id, String name) {
         this.id = id;
         this.name = name;

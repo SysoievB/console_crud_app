@@ -1,24 +1,25 @@
 package com.sysoiev.crud.repository.impl;
 
 import com.sysoiev.crud.model.Student;
-import com.sysoiev.crud.model.StudentAccount;
 import com.sysoiev.crud.model.StudentStatus;
 import com.sysoiev.crud.model.Subject;
-import com.sysoiev.crud.repository.StudentAccountRepository;
 import com.sysoiev.crud.repository.StudentRepository;
 import com.sysoiev.crud.repository.SubjectRepository;
 
 import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.util.*;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Optional;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 public class StudentRepositoryImpl implements StudentRepository {
     private final String filePath = "src\\main\\resources\\students.txt";
     private SubjectRepository subjectRepository = new SubjectRepositoryImpl();
-    private StudentAccountRepository studentAccountRepository = new StudentAccountRepositoryImpl();
     private List<String> listAllElementsFromFileStudents;
+    private Set<Subject> subjects;
 
     {
         try (FileReader reader = new FileReader(filePath);
@@ -26,6 +27,7 @@ public class StudentRepositoryImpl implements StudentRepository {
             listAllElementsFromFileStudents = bufferedReader
                     .lines()
                     .collect(Collectors.toList());
+            subjects = new HashSet<>(subjectRepository.getAll());
         } catch (IOException e) {
             System.err.format("IOException: %s%n", e);
         }
@@ -33,7 +35,21 @@ public class StudentRepositoryImpl implements StudentRepository {
 
     @Override
     public Student getById(Long id) {
-        return null;
+        Set<Subject> subjectSet = new HashSet<>();
+        for (String s : listAllElementsFromFileStudents) {
+            if (s.startsWith(id.toString())) {
+                String[] words = s.split(" ");
+                for (String word : words) {
+                    String subjectValueNameString = subjects.stream().map(Subject::getName).toString();
+                    if (word.equals(subjectValueNameString)) {
+                        subjectSet.add(new Subject(subjectValueNameString));
+                    }
+                    return new Student(Long.parseLong(words[0]), words[1], words[2], StudentStatus.valueOf(words[3]), subjectSet);
+                }
+            }
+        }
+        Optional<Student> empty = Optional.empty();
+        return empty.orElseThrow(NullPointerException::new);
     }
 
     @Override
@@ -76,11 +92,6 @@ public class StudentRepositoryImpl implements StudentRepository {
         return student;
     }
 
-    /*private Long id;
-        private String name;
-        private String surname;
-        private StudentAccount account;
-        private Set<Subject> subjects = new HashSet<>();*/
     @Override
     public List<Student> getAll() {
         Set<Subject> subjectSet = new HashSet<>();
@@ -89,23 +100,16 @@ public class StudentRepositoryImpl implements StudentRepository {
                 .map(s -> {
                             String[] words = s.split(" ");
                             for (String word : words) {
-                                if (words.length > 3) {
-
+                                String subjectValueNameString = subjects.stream().map(Subject::getName).toString();
+                                if (word.equals(subjectValueNameString)) {
+                                    subjectSet.add(new Subject(subjectValueNameString));
                                 }
+                                return new Student(Long.parseLong(words[0]), words[1], words[2], StudentStatus.valueOf(words[3]), subjectSet);
                             }
-
-                            new Student(Long.parseLong(words[0]), words[1], words[2], StudentStatus.valueOf(words[3]), )
+                            Optional<Student> empty = Optional.empty();
+                            return empty.orElseThrow(NullPointerException::new);
                         }
                 )
                 .collect(Collectors.toList());
     }
 }
-/*String str = "Hello This is DelfStack";
-        StringTokenizer tokens = new StringTokenizer(str, " ");
-        String[] newStr = new String[tokens.countTokens()];
-        int index=0;
-        while(tokens.hasMoreTokens()){
-            newStr[index] = tokens.nextToken();
-            System.out.println(newStr[index]);
-            index++;
-        }*/

@@ -8,18 +8,18 @@ public class Student {
     private Long id;
     private String name;
     private String surname;
-    private StudentAccount account;
+    private StudentStatus status;
     private Set<Subject> subjects = new HashSet<>();
 
     public Student() {
 
     }
 
-    public Student(Long id, String name, String surname, StudentAccount account, Set<Subject> subjects) {
+    public Student(Long id, String name, String surname, StudentStatus status, Set<Subject> subjects) {
         this.id = id;
         this.name = name;
         this.surname = surname;
-        this.account = account;
+        this.status = status;
         this.subjects = subjects;
     }
 
@@ -47,12 +47,12 @@ public class Student {
         this.surname = surname;
     }
 
-    public StudentAccount getAccount() {
-        return account;
+    public StudentStatus getStatus() {
+        return status;
     }
 
-    public void setAccount(StudentAccount account) {
-        this.account = account;
+    public void setStatus(StudentStatus status) {
+        this.status = status;
     }
 
     public Set<Subject> getSubjects() {
@@ -69,6 +69,6 @@ public class Student {
 
     @Override
     public String toString() {
-        return id + " " + name + " " + surname + " " + account.getStatus() + " " + printAllSubjects();
+        return id + " " + name + " " + surname + " " + status.toString() + " " + printAllSubjects();
     }
 }
