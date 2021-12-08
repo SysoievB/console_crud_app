@@ -13,7 +13,7 @@ public class StudentAccountView {
 
 
     public void printStudentAccounts() {
-        System.out.println("List of all student accounts : ");
+        System.out.println("List of all student accounts: ");
         try {
             System.out.println(accountController.printAll());
         } catch (IOException e) {
@@ -22,13 +22,13 @@ public class StudentAccountView {
     }
 
     public void deleteStudentAccount() {
-        System.out.println("Enter id in order to delete row : ");
+        System.out.println("Enter id in order to delete row: ");
         Long index = Long.parseLong(scanner.next());
         accountController.deleteStudentAccount(index);
     }
 
     public void getByIdStudentAccount() {
-        System.out.println("Enter id in order to get student account :");
+        System.out.println("Enter id in order to get student account:");
         Long id = Long.parseLong(scanner.next());
         try {
             try {
@@ -57,7 +57,7 @@ public class StudentAccountView {
     }
 
     public void updateStudentAccount() {
-        System.out.println("Enter id in order to find element :");
+        System.out.println("Enter id in order to find element:");
         Long id = Long.parseLong(scanner.next());
         System.out.println("Enter status : 1.PRIMARY,2.SECONDARY,3.GRADUATE");
         String accountStatusStr = scanner.next();

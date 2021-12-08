@@ -12,7 +12,6 @@ public class Student {
     private Set<Subject> subjects = new HashSet<>();
 
     public Student() {
-
     }
 
     public Student(Long id) {
