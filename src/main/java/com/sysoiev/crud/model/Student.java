@@ -15,6 +15,10 @@ public class Student {
 
     }
 
+    public Student(Long id) {
+        this.id = id;
+    }
+
     public Student(Long id, String name, String surname, StudentStatus status, Set<Subject> subjects) {
         this.id = id;
         this.name = name;

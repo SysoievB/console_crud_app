@@ -74,7 +74,18 @@ public class StudentRepositoryImpl implements StudentRepository {
 
     @Override
     public Student update(Student student) {
-        return null;
+        try {
+            for (int i = 0; i < listAllElementsFromFileStudents.size(); i++) {
+                String line = listAllElementsFromFileStudents.get(i).substring(0, listAllElementsFromFileStudents.get(i).indexOf(' '));
+                if (line.equals(String.valueOf(student.getId()))) {
+                    listAllElementsFromFileStudents.set(i, student.toString());
+                }
+            }
+            Files.write(Paths.get(filePath), listAllElementsFromFileStudents);
+        } catch (IOException e) {
+            System.err.format("IOException: %s%n", e);
+        }
+        return student;
     }
 
     @Override

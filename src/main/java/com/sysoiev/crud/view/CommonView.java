@@ -63,7 +63,7 @@ public class CommonView {
     }
 
     public void runStudent() {
-        //studentView.run();
+        studentView.run();
     }
 
 }
