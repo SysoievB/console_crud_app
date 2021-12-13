@@ -126,17 +126,17 @@ public class StudentRepositoryImpl implements StudentRepository {
 
     @Override
     public List<Student> getAll() {
-        Set<Subject> subjectSet = new HashSet<>();
         return listAllElementsFromFileStudents
                 .stream()
                 .map(s -> {
-                            String[] words = s.split(" ");
-                            for (String word : words) {
-                                String subjectValueNameString = subjects.stream().map(Subject::getName).toString();
-                                if (word.equals(subjectValueNameString)) {
-                                    subjectSet.add(new Subject(subjectValueNameString));
+                            var lines = s.split(" ");
+                            var subjectSet = new HashSet<Subject>();
+                            for (int i = 0; i < lines.length; i++) {
+                                //String subjectValueNameString = subjects.stream().map(Subject::getName).toString();
+                                if (i > 3) {
+                                    subjectSet.add(new Subject(lines[i]));
                                 }
-                                return new Student(Long.parseLong(words[0]), words[1], words[2], StudentStatus.valueOf(words[3]), subjectSet);
+                                return new Student(Long.parseLong(lines[0]), lines[1], lines[2], StudentStatus.valueOf(lines[3]), subjectSet);
                             }
                             Optional<Student> empty = Optional.empty();
                             return empty.orElseThrow(NullPointerException::new);

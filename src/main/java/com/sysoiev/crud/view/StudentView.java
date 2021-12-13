@@ -18,7 +18,7 @@ public class StudentView {
     public void printStudents() {
         System.out.println("List of all students: ");
         try {
-            System.out.println(studentController.printAll());
+            studentController.printAll().forEach(System.out::println);
         } catch (IOException e) {
             e.printStackTrace();
         }
