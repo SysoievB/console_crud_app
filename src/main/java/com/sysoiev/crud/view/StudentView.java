@@ -124,15 +124,6 @@ public class StudentView {
     public void run() {
         boolean go = true;
         while (go) {
-            var variants = "\nChoose option, please:" +
-                    "\nEnter number:" +
-                    "\n1. Show all rows" +
-                    "\n2. Insert new row" +
-                    "\n3. Delete row" +
-                    "\n4. Update row" +
-                    "\n5. Search by id" +
-                    "\n6. End";
-            System.out.println(variants);
             int number = scanner.nextInt();
             switch (number) {
                 case 1:

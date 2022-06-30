@@ -9,6 +9,21 @@ public class CommonView {
     private final SubjectView subjectView;
     private static CommonView view;
 
+    private final String chooseFile = "\nChoose a file in order to do operations, please:" +
+            "\nEnter number:" +
+            "\n1.Subjects" +
+            "\n2.Students accounts" +
+            "\n3.Students" +
+            "\n4.End";
+    private final String chooseOption = "\nChoose an option, please:" +
+            "\nEnter number:" +
+            "\n1. Show all rows" +
+            "\n2. Insert new row" +
+            "\n3. Delete row" +
+            "\n4. Update row" +
+            "\n5. Search by id" +
+            "\n6. End";
+
     private CommonView() {
         studentView = new StudentView();
         accountView = new StudentAccountView();
@@ -26,13 +41,7 @@ public class CommonView {
         Scanner scanner = new Scanner(System.in);
         boolean go = true;
         while (go) {
-            var variants = "\nChoose file in order to do operations, please:" +
-                    "\nEnter number:" +
-                    "\n1.Subjects" +
-                    "\n2.Students accounts" +
-                    "\n3.Students" +
-                    "\n4.End";
-            System.out.println(variants);
+            System.out.println(chooseFile);
             int number = scanner.nextInt();
             switch (number) {
                 case 1:
@@ -55,16 +64,17 @@ public class CommonView {
     }
 
     public void runSubject() {
+        System.out.println(chooseOption);
         subjectView.run();
     }
 
-
     public void runStudentAccount() {
+        System.out.println(chooseOption);
         accountView.run();
     }
 
-
     public void runStudent() {
+        System.out.println(chooseOption);
         studentView.run();
     }
 

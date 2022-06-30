@@ -84,15 +84,6 @@ public class StudentAccountView {
     public void run() {
         boolean go = true;
         while (go) {
-            var variants = "\nChoose option, please:" +
-                    "\nEnter number:" +
-                    "\n1. Show all rows" +
-                    "\n2. Insert new row" +
-                    "\n3. Delete row" +
-                    "\n4. Update row" +
-                    "\n5. Search by id" +
-                    "\n6. End";
-            System.out.println(variants);
             int number = scanner.nextInt();
             switch (number) {
                 case 1:
@@ -114,8 +105,8 @@ public class StudentAccountView {
                     go = false;
                     break;
                 default:
-                    System.out.println("Wrong number");
-                    System.out.println("Enter number from 1 to 6, please");
+                    System.out.println("Wrong number" +
+                            "\nEnter number from 1 to 6, please");
             }
         }
     }
