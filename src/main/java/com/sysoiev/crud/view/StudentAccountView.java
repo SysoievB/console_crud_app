@@ -8,9 +8,13 @@ import java.io.IOException;
 import java.util.Scanner;
 
 public class StudentAccountView {
-    private Scanner scanner = new Scanner(System.in);
-    private StudentAccountController accountController = new StudentAccountController();
+    private final Scanner scanner;
+    private final StudentAccountController accountController;
 
+    public StudentAccountView() {
+        scanner = new Scanner(System.in);
+        accountController = new StudentAccountController();
+    }
 
     public void printStudentAccounts() {
         System.out.println("List of all student accounts: ");
@@ -80,14 +84,15 @@ public class StudentAccountView {
     public void run() {
         boolean go = true;
         while (go) {
-            System.out.println("\nChoose option, please :");
-            System.out.println("Enter number : ");
-            System.out.println("1. Show all rows");
-            System.out.println("2. Insert new row");
-            System.out.println("3. Delete row ");
-            System.out.println("4. Update row  ");
-            System.out.println("5. Search by id ");
-            System.out.println("6. End ");
+            var variants = "\nChoose option, please:" +
+                    "\nEnter number:" +
+                    "\n1. Show all rows" +
+                    "\n2. Insert new row" +
+                    "\n3. Delete row" +
+                    "\n4. Update row" +
+                    "\n5. Search by id" +
+                    "\n6. End";
+            System.out.println(variants);
             int number = scanner.nextInt();
             switch (number) {
                 case 1:

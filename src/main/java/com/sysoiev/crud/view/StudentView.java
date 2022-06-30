@@ -11,9 +11,13 @@ import java.util.Scanner;
 import java.util.Set;
 
 public class StudentView {
-    private Scanner scanner = new Scanner(System.in);
-    private StudentController studentController = new StudentController();
+    private final Scanner scanner;
+    private final StudentController studentController;
 
+    public StudentView() {
+        scanner = new Scanner(System.in);
+        studentController = new StudentController();
+    }
 
     public void printStudents() {
         System.out.println("List of all students: ");
@@ -120,14 +124,15 @@ public class StudentView {
     public void run() {
         boolean go = true;
         while (go) {
-            System.out.println("\nChoose option, please :");
-            System.out.println("Enter number : ");
-            System.out.println("1. Show all rows");
-            System.out.println("2. Insert new row");
-            System.out.println("3. Delete row ");
-            System.out.println("4. Update row  ");
-            System.out.println("5. Search by id ");
-            System.out.println("6. End ");
+            var variants = "\nChoose option, please:" +
+                    "\nEnter number:" +
+                    "\n1. Show all rows" +
+                    "\n2. Insert new row" +
+                    "\n3. Delete row" +
+                    "\n4. Update row" +
+                    "\n5. Search by id" +
+                    "\n6. End";
+            System.out.println(variants);
             int number = scanner.nextInt();
             switch (number) {
                 case 1:

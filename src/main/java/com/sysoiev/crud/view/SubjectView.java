@@ -7,8 +7,13 @@ import java.io.IOException;
 import java.util.Scanner;
 
 public class SubjectView {
-    private Scanner scanner = new Scanner(System.in);
-    private SubjectController subjectController = new SubjectController();
+    private final Scanner scanner;
+    private final SubjectController subjectController;
+
+    public SubjectView() {
+        scanner = new Scanner(System.in);
+        subjectController = new SubjectController();
+    }
 
     public void printSubjects() {
         System.out.println("List of all subjects : ");
@@ -33,8 +38,7 @@ public class SubjectView {
                 System.out.println(subjectController.getValueById(id).toString());
 
         } catch (NullPointerException | IOException e) {
-            System.out.println("There is no such number ");
-            System.out.println("Try one more time, please");
+            System.out.println("There is no such number\nTry one more time, please");
             getByIdSubject();
         }
     }
@@ -64,14 +68,15 @@ public class SubjectView {
     public void run() {
         boolean go = true;
         while (go) {
-            System.out.println("\nChoose option, please :");
-            System.out.println("Enter number : ");
-            System.out.println("1. Show all rows");
-            System.out.println("2. Insert new row");
-            System.out.println("3. Delete row ");
-            System.out.println("4. Update row  ");
-            System.out.println("5. Search by id ");
-            System.out.println("6. End ");
+            var variants = "\nChoose option, please:" +
+                    "\nEnter number:" +
+                    "\n1. Show all rows" +
+                    "\n2. Insert new row" +
+                    "\n3. Delete row" +
+                    "\n4. Update row" +
+                    "\n5. Search by id" +
+                    "\n6. End";
+            System.out.println(variants);
             int number = scanner.nextInt();
             switch (number) {
                 case 1:
@@ -93,8 +98,8 @@ public class SubjectView {
                     go = false;
                     break;
                 default:
-                    System.out.println("Wrong number");
-                    System.out.println("Enter number from 1 to 6, please");
+                    System.out.println("Wrong number" +
+                            "\nEnter number from 1 to 6, please");
             }
         }
     }

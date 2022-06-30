@@ -4,9 +4,9 @@ import java.util.Scanner;
 
 public class CommonView {
 
-    private StudentAccountView accountView;
-    private StudentView studentView;
-    private SubjectView subjectView;
+    private final StudentAccountView accountView;
+    private final StudentView studentView;
+    private final SubjectView subjectView;
     private static CommonView view;
 
     private CommonView() {
@@ -22,17 +22,17 @@ public class CommonView {
         return view;
     }
 
-
     public void run() {
         Scanner scanner = new Scanner(System.in);
         boolean go = true;
         while (go) {
-            System.out.println("\nChoose file in order to do operations, please :");
-            System.out.println("Enter number : ");
-            System.out.println("1.Subjects");
-            System.out.println("2.Students accounts");
-            System.out.println("3.Students");
-            System.out.println("4. End ");
+            var variants = "\nChoose file in order to do operations, please:" +
+                    "\nEnter number:" +
+                    "\n1.Subjects" +
+                    "\n2.Students accounts" +
+                    "\n3.Students" +
+                    "\n4.End";
+            System.out.println(variants);
             int number = scanner.nextInt();
             switch (number) {
                 case 1:
@@ -48,8 +48,8 @@ public class CommonView {
                     go = false;
                     break;
                 default:
-                    System.out.println("Wrong number");
-                    System.out.println("Enter number from 1 to 4, please");
+                    System.out.println("Wrong number" +
+                            "\nEnter number from 1 to 4, please");
             }
         }
     }
