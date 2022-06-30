@@ -58,9 +58,11 @@ public class CommonView {
         subjectView.run();
     }
 
+
     public void runStudentAccount() {
         accountView.run();
     }
+
 
     public void runStudent() {
         studentView.run();
