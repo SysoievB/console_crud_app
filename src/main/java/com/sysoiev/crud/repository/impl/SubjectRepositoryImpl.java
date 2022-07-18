@@ -8,6 +8,7 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.List;
 import java.util.Optional;
+import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 public class SubjectRepositoryImpl implements SubjectRepository {
@@ -92,7 +93,9 @@ public class SubjectRepositoryImpl implements SubjectRepository {
 
         return listAllElementsFromFileSubjects
                 .stream()
-                .map(s -> new Subject(Long.parseLong(s.substring(0, s.indexOf(" "))), s.substring(s.indexOf(" "))))
-                .collect(Collectors.toList());
+                //.map(s -> new Subject(Long.parseLong(s.substring(0, s.indexOf(" "))), s.substring(s.indexOf(" "))))
+                .map(String::strip)
+                .map(s -> new Subject(Long.valueOf(String.valueOf(Pattern.compile("\\d+").matcher(s))), String.valueOf(Pattern.compile("\\w+").matcher(s))))
+                        .collect(Collectors.toList());
     }
 }
